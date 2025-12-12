@@ -4,3 +4,4 @@
 4. run code
     i. npm install
     ii. node index.js
+5. Dockerize app
