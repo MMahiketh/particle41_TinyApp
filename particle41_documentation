@@ -1,3 +1,6 @@
 1. Create an IAM user for doing the task
 2. Create CLI keys for the user
 3. Download the code.js
+4. run code
+    i. npm install
+    ii. node index.js
