@@ -1,0 +1,3 @@
+locals {
+  network    = ["public", "private"]
+}
