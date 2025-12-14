@@ -10,3 +10,9 @@
         # docker build -t tiny_app:v1
     For running the container:
         # docker run -d -p 80:3000 mahiketh/tiny_app:v1
+7. Create an AWS ec2 instance with amazon linux 2023
+8. Create Security Group
+    i. Inbound rule - allow ssh port 22 on my_ip
+    ii. Outbound rule - Allow http port 80 from any where (All IPs)
+9. Attach SG to the ec2
+10. Create a vpc module
