@@ -16,3 +16,4 @@
     ii. Outbound rule - Allow http port 80 from any where (All IPs)
 9. Attach SG to the ec2
 10. Create a vpc module
+11. Create VPC using teraform
