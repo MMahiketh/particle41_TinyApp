@@ -10,3 +10,5 @@ This Terraform code is going to create below resources.
 * Private Route table
 * Routes
 * Route table associations with subnets
+* 3 Security Groups(LoadBalancer, EKS- Controlplane, Node)
+* Rules for Security Groups

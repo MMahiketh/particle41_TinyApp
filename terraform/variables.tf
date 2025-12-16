@@ -20,3 +20,23 @@ variable "subnet_cidrs" {
     ["10.0.2.0/24", "10.0.12.0/24"]
   ]
 }
+
+variable "ssh_port" {
+  type    = number
+  default = 22
+}
+
+variable "http_port" {
+  type    = number
+  default = 80
+}
+
+variable "nodeport_start" {
+  type    = number
+  default = 30000
+}
+
+variable "nodeport_end" {
+  type    = number
+  default = 32767
+}

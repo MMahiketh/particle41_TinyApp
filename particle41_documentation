@@ -12,8 +12,10 @@
         # docker run -d -p 80:3000 mahiketh/tiny_app:v1
 7. Create an AWS ec2 instance with amazon linux 2023
 8. Create Security Group
-    i. Inbound rule - allow ssh port 22 on my_ip
-    ii. Outbound rule - Allow http port 80 from any where (All IPs)
+    i. Inbound rule - Allow ssh port 22 on my_ip
+                        Allow http port 80 from Anywhere (All IPs)
+    ii. Outbound rule - Allow all traffic from Anywhere
 9. Attach SG to the ec2
 10. Create a vpc module
 11. Create VPC using teraform
+12. Create SG
