@@ -47,7 +47,7 @@ module "eks" {
   version = "21.0"
 
   name               = local.resource_name
-  kubernetes_version = "1.33"
+  kubernetes_version = "1.34"
 
   endpoint_public_access = true
 
@@ -85,7 +85,9 @@ module "eks" {
     # }
 
     green = {
+      ami_type       = "AL2023_x86_64_STANDARD"
       instance_types = ["m6i.large", "m5.large", "m5n.large", "m5zn.large"]
+      
       max_size      = 10
       min_size      = 2
       desired_size  = 2
@@ -107,3 +109,76 @@ module "eks" {
     var.tags
   )
 }
+
+
+# # ALB for Ingress
+# module "alb" {
+#   source = "terraform-aws-modules/alb/aws"
+
+#   name     = local.resource_name
+#   internal = false
+#   vpc_id   = module.vpc.vpc_id
+#   subnets  = module.vpc.public_subnet_ids
+
+#   create_security_group = false
+#   security_groups       = [module.ingress_alb_sg.id]
+
+#   enable_deletion_protection = false
+
+#   tags = merge(
+#     local.common_tags,
+#     { Name = local.resource_name },
+#     var.tags
+#   )
+# }
+
+# resource "aws_lb_listener" "main" {
+#   load_balancer_arn = module.main.arn
+#   port              = "80"
+#   protocol          = "HTTP"
+
+#   default_action {
+#     type = "fixed-response"
+
+#     fixed_response {
+#       content_type = "text/html"
+#       message_body = "<h1>I'am ingress ALB</h1>"
+#       status_code  = "200"
+#     }
+#   }
+# }
+
+# resource "aws_lb_target_group" "expense" {
+#   name        = local.resource_name
+#   port        = 8080
+#   protocol    = "HTTP"
+#   vpc_id      = module.vpc.vpc_id
+#   target_type = "ip"
+
+#   health_check {
+#     healthy_threshold   = 2
+#     unhealthy_threshold = 2
+#     interval            = 5
+#     matcher             = "200-299"
+#     path                = "/"
+#     port                = 8080
+#     protocol            = "HTTP"
+#     timeout             = 4
+#   }
+# }
+
+# resource "aws_lb_listener_rule" "frontend" {
+#   listener_arn = aws_lb_listener.main.arn
+#   priority     = 100
+
+#   action {
+#     type             = "forward"
+#     target_group_arn = aws_lb_target_group.expense.arn
+#   }
+
+#   condition {
+#     host_header {
+#       values = ["${local.resource_name}.${local.zone_name}"]
+#     }
+#   }
+# }
