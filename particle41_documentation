@@ -16,6 +16,12 @@
                         Allow http port 80 from Anywhere (All IPs)
     ii. Outbound rule - Allow all traffic from Anywhere
 9. Attach SG to the ec2
-10. Create a vpc module
-11. Create VPC using teraform
-12. Create SG
+10. aws configure- Give cli keys
+11. Create a bucket
+    aws s3api create-bucket --bucket particle41-dev-state-files --region us-east-1
+    aws s3api put-bucket-versioning --bucket particle41-dev-state-files --versioning-configuration Status=Enabled
+    aws s3api put-bucket-encryption --bucket particle41-dev-state-files --server-side-encryption-configuration '{"Rules":[{"ApplyServerSideEncryptionByDefault":{"SSEAlgorithm":"AES256"}}]}'
+
+12. Create a vpc module
+13. Create VPC using teraform
+14. Create SG

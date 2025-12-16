@@ -2,14 +2,15 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "5.10.0"
+      version = ">= 5.10.0"
     }
   }
   backend "s3" {
-    bucket         = "particle41-dev-state-files"
-    key            = "terraform-particle41-dev-vpc"
-    region         = "us-east-1"
-    dynamodb_table = "particle41-dev-locking"
+    bucket       = "particle41-dev-state-files"
+    key          = "terraform-particle41.tfstate"
+    region       = "us-east-1"
+    encrypt      = true
+    use_lockfile = true #S3 native locking
   }
 }
 
